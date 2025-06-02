@@ -5,28 +5,74 @@
 
 package lab7;
 
-import java.util.HashMap;
+import java.util.PriorityQueue;
 import java.util.Scanner;
-import java.util.NoSuchElementException;
+import java.util.NoSuchElementException; 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.ArrayList;
 import java.util.BitSet;
 
 
 public class Huffman {
     
+    // an inner class defining a node in a tree
+    public static class TreeNode implements Comparable<TreeNode>{ 
+
+
+        public String data ;
+        public int freq;
+        public TreeNode left;
+        public TreeNode right;
+
+        // node constructor changing all fields
+        public TreeNode(String scan, int frequency, TreeNode l, TreeNode r){
+            data = scan;
+            freq = frequency;
+            left = l;
+            right = r;
+        }
+
+        // node constructor changing only frequency
+        public TreeNode(int frequency){
+            freq = frequency;
+        }
+
+        // a default constuctor
+        public TreeNode(){}
+
+        // adding the use of comparable
+        // to easily compare frequencies when making
+        // a tree
+        public int compareTo(TreeNode compare){
+            return freq - compare.freq;
+        }
+    }
+
     /*
-     * Using HashMap as a Temporary Tree; Want to use 
-     * A Heap but lowkey forgot how to import that
+     * Use a priority queue to build a tree, 
+     * organize prority by frequency.
      */
-    HashMap<String,Integer> hashMap = new HashMap<>(); 
+    PriorityQueue<TreeNode> p = new PriorityQueue<>();
+
+    static TreeNode generateTree(PriorityQueue<TreeNode> p){
+        while (p.size() != 1){
+            TreeNode left = p.poll();
+            TreeNode right = p.poll();
+
+            TreeNode newNode = new TreeNode(left.freq + right.freq);
+            newNode.left = left;
+            newNode.right = right;
+
+            p.add(newNode);
+        }
+        return p.poll();
+    }
 
     /*
      * takes the tree and the encoded bit string and spits
      * out a real string. idk
      */
-    private static String decode(HashMap<String, Integer> tree, BitSet encoded){
+    private static String decode(TreeNode tree, BitSet encoded){
         throw new UnsupportedOperationException();
     }
 
@@ -37,7 +83,7 @@ public class Huffman {
      * 
      * also says to use a string builder? 
      */
-    private static String encode(HashMap<String, Integer> tree, String input){
+    private static String encode(TreeNode tree, String input){
         throw new UnsupportedOperationException();
     }
 
@@ -47,6 +93,10 @@ public class Huffman {
      * characters and int frequencies?
      * sorts that by frequency using one of sorting methods??
      */
+
+     // new note: you can use mashable 
+     // to build this. idk what that is but that is
+     // what my gf said. soooo look into this
     private static int frequency(String input){
         throw new UnsupportedOperationException();
     }
