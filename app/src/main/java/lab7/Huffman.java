@@ -19,13 +19,13 @@ public class Huffman {
     public static class TreeNode implements Comparable<TreeNode>{ 
 
 
-        public String data ;
+        public char data ;
         public int freq;
         public TreeNode left;
         public TreeNode right;
 
         // node constructor changing all fields
-        public TreeNode(String scan, int frequency, TreeNode l, TreeNode r){
+        public TreeNode(char scan, int frequency, TreeNode l, TreeNode r){
             data = scan;
             freq = frequency;
             left = l;
