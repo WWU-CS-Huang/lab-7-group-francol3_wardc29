@@ -54,6 +54,11 @@ public class Huffman {
      */
     PriorityQueue<TreeNode> p = new PriorityQueue<>();
 
+    /* ok so this is telling the tree to form
+     *  by taking the top two nodes (highest freq)
+     * and setting them as new nodes, which will
+     * keep going until theres only 1 thing left.
+     */
     static TreeNode generateTree(PriorityQueue<TreeNode> p){
         while (p.size() != 1){
             TreeNode left = p.poll();
@@ -70,7 +75,8 @@ public class Huffman {
 
     /*
      * takes the tree and the encoded bit string and spits
-     * out a real string. idk
+     * out a real string(compliant bc the writeup
+     * says to store the bitstring as a string of binary). idk
      */
     private static String decode(TreeNode tree, BitSet encoded){
         throw new UnsupportedOperationException();
@@ -105,7 +111,7 @@ public class Huffman {
      * we have to compare the decode to the input
      * maybe use a tostring to make decode a string
      */
-    private static boolean checkEqual(BitSet decode, String input){
+    private static boolean checkEqual(String decode, String input){
         if (decode.equals(input)){
             return true;
         } else {
@@ -116,8 +122,8 @@ public class Huffman {
     /* 
      * program to return ratio in the write up
      */
-    private static float findRatio(BitSet encoded, String input){
-        throw new UnsupportedOperationException();
+    private static double findRatio(BitSet encoded, String input){
+        return encoded.length() / input.length() / 8.0;
     }
 
     /*
