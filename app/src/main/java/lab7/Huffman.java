@@ -7,7 +7,7 @@ package lab7;
 
 import java.util.PriorityQueue;
 import java.util.Scanner;
-import java.util.NoSuchElementException; 
+import java.util.HashMap;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.BitSet;
@@ -53,6 +53,7 @@ public class Huffman {
      * organize prority by frequency.
      */
     PriorityQueue<TreeNode> p = new PriorityQueue<>();
+    HashMap<Character,Integer> freqMap = new HashMap<>();
 
     /* ok so this is telling the tree to form
      *  by taking the top two nodes (highest freq)
@@ -100,12 +101,22 @@ public class Huffman {
      * sorts that by frequency using one of sorting methods??
      */
 
-     // new note: you can use mashable 
-     // to build this. idk what that is but that is
-     // what my gf said. soooo look into this
-    private static int frequency(String input){
-        throw new UnsupportedOperationException();
-    }
+     // ok this SHOULD put the inputted character into the right
+     // place in a hash map. ELSE it should replace the original key while
+     // updating the frequency?? def needs testing
+     // could probably put in lines for counting or printing
+     // if needed for debugging.
+    public void frequency(String input){
+        int i = 0;
+        while (i<input.length()){
+            if (freqMap.containsKey(input.charAt(i)) == false){
+                freqMap.put(input.charAt(i), 1);
+                i++;
+            } else {
+                freqMap.put(input.charAt(i), i+1);
+            }
+        } 
+        }
 
     /*
      * we have to compare the decode to the input
