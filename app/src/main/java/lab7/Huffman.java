@@ -114,6 +114,7 @@ public class Huffman {
                 i++;
             } else {
                 freqMap.put(input.charAt(i), i+1);
+                i++;
             }
         } 
         }
